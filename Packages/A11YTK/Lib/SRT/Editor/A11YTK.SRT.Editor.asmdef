@@ -1,0 +1,19 @@
+{
+    "name": "A11YTK.SRT.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:786073e629ba944cfb38fc6992ecf0c0",
+        "GUID:7e83b4abd5ac0402d84f7951094d7dd5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

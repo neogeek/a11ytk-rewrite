@@ -1,0 +1,17 @@
+{
+    "name": "A11YTK",
+    "rootNamespace": "",
+    "references": [
+        "A11YTK.SRT",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
