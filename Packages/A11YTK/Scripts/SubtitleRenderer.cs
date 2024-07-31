@@ -29,6 +29,8 @@ namespace A11YTK
         [SerializeField]
         private TextAsset _subtitlesTextAsset;
 
+        private bool _showSubtitles = true;
+
         private bool _audioSourceAvailable => _audioSource && _audioSource.clip;
 
         private bool _videoPlayerAvailable => _videoPlayer && _videoPlayer.clip;
@@ -77,6 +79,16 @@ namespace A11YTK
             return 0;
         }
 
+        public bool IsVisible()
+        {
+            return _showSubtitles;
+        }
+
+        public void ToggleVisibility()
+        {
+            _showSubtitles = !_showSubtitles;
+        }
+
         private void Update()
         {
             if (!_subtitleTextComp || !_audioSourceAvailable && _videoPlayerAvailable)
@@ -87,7 +99,9 @@ namespace A11YTK
             var activeSubtitle = Utilities.GetActiveSubtitle(_subtitles, GetElapsedTime());
 
             _subtitleTextComp.text =
-                activeSubtitle.HasValue ? _subtitleTextComp.WrapText(activeSubtitle.Value.text, _maxCharLength) : "";
+                activeSubtitle.HasValue && _showSubtitles
+                    ? _subtitleTextComp.WrapText(activeSubtitle.Value.text, _maxCharLength)
+                    : "";
 
             if (!_subtitleBackground)
             {
