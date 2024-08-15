@@ -46,7 +46,7 @@ namespace A11YTK
                 SetSubtitle(_subtitlesTextAsset);
             }
 
-            _subtitleTextComp.text = "";
+            UpdateSubtitle("");
         }
 
         public void SetSubtitle(string text)
@@ -93,24 +93,34 @@ namespace A11YTK
 
         private void Update()
         {
-            if (!_subtitleTextComp || !_audioSourceAvailable && !_videoPlayerAvailable)
+            if (!_subtitleTextComp || (!_audioSourceAvailable && !_videoPlayerAvailable))
             {
                 return;
             }
 
             var activeSubtitle = Utilities.GetActiveSubtitle(_subtitles, GetElapsedTime());
 
-            _subtitleTextComp.text =
-                activeSubtitle.HasValue && _showSubtitles
-                    ? _subtitleTextComp.WrapText(activeSubtitle.Value.text, _maxCharLength)
-                    : "";
+            UpdateSubtitle(activeSubtitle.HasValue && _showSubtitles
+                ? _subtitleTextComp.WrapText(activeSubtitle.Value.text, _maxCharLength)
+                : "");
+        }
+
+        public void UpdateSubtitle(string subtitleText)
+        {
+            if (_subtitleTextComp.text == subtitleText)
+            {
+                return;
+            }
+
+            _subtitleTextComp.text = subtitleText;
 
             if (!_subtitleBackground)
             {
                 return;
             }
 
-            _subtitleTextComp.rectTransform.sizeDelta = _subtitleTextComp.GetPreferredValues(_subtitleTextComp.text);
+            _subtitleTextComp.rectTransform.sizeDelta =
+                _subtitleTextComp.GetPreferredValues(_subtitleTextComp.text);
 
             _subtitleBackground.sizeDelta = _subtitleTextComp.rectTransform.sizeDelta;
             _subtitleBackground.anchoredPosition = _subtitleTextComp.rectTransform.anchoredPosition;
