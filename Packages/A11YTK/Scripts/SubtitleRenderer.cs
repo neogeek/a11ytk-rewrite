@@ -91,7 +91,7 @@ namespace A11YTK
 
         private void Update()
         {
-            if (!_subtitleTextComp || !_audioSourceAvailable && _videoPlayerAvailable)
+            if (!_subtitleTextComp || !_audioSourceAvailable && !_videoPlayerAvailable)
             {
                 return;
             }
