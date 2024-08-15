@@ -45,6 +45,8 @@ namespace A11YTK
             {
                 SetSubtitle(_subtitlesTextAsset);
             }
+
+            _subtitleTextComp.text = "";
         }
 
         public void SetSubtitle(string text)
