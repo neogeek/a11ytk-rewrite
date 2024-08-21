@@ -43,7 +43,7 @@ namespace A11YTK.SRT.Tests
             Assert.That(subtitles[3].id, Is.EqualTo(4));
             Assert.That(subtitles[3].startTime, Is.EqualTo(32.200d));
             Assert.That(subtitles[3].endTime, Is.EqualTo(36.200d));
-            Assert.That(subtitles[3].text, Is.EqualTo("If you can see me,\ncan you wave?"));
+            Assert.That(subtitles[3].text, Is.EqualTo($"If you can see me,{Environment.NewLine}can you wave?"));
 
             Assert.That(subtitles[4].id, Is.EqualTo(5));
             Assert.That(subtitles[4].startTime, Is.EqualTo(40.200d));
