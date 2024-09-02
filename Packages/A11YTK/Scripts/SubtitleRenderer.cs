@@ -64,6 +64,8 @@ namespace A11YTK
         public void ClearSubtitles()
         {
             _subtitles.Clear();
+
+            UpdateSubtitle(string.Empty);
         }
 
         private double GetElapsedTime()
