@@ -46,7 +46,7 @@ namespace A11YTK
                 SetSubtitle(_subtitlesTextAsset);
             }
 
-            UpdateSubtitle("");
+            UpdateSubtitle(string.Empty);
         }
 
         public void SetSubtitle(string text)
