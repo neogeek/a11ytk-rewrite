@@ -31,9 +31,9 @@ namespace A11YTK
 
         private bool _showSubtitles = true;
 
-        private bool _audioSourceAvailable => _audioSource && _audioSource.clip;
+        private bool _audioClipAvailable => _audioSource && _audioSource.clip;
 
-        private bool _videoPlayerAvailable => _videoPlayer && _videoPlayer.clip;
+        private bool _videoClipAvailable => _videoPlayer && _videoPlayer.clip;
 
         private readonly List<Subtitle> _subtitles = new();
 
@@ -68,12 +68,12 @@ namespace A11YTK
 
         private double GetElapsedTime()
         {
-            if (_audioSourceAvailable)
+            if (_audioClipAvailable)
             {
                 return _audioSource.time;
             }
 
-            if (_videoPlayerAvailable)
+            if (_videoClipAvailable)
             {
                 return _videoPlayer.time;
             }
@@ -93,7 +93,7 @@ namespace A11YTK
 
         private void Update()
         {
-            if (!_subtitleTextComp || (!_audioSourceAvailable && !_videoPlayerAvailable))
+            if (!_subtitleTextComp || (!_audioClipAvailable && !_videoClipAvailable))
             {
                 return;
             }
