@@ -111,10 +111,17 @@ namespace A11YTK
                 return;
             }
 
-            _subtitleTextComp.text = subtitleText;
+            _subtitleTextComp.text = subtitleText.Trim();
 
             if (!_subtitleBackground)
             {
+                return;
+            }
+
+            if (_subtitleTextComp.text == string.Empty)
+            {
+                _subtitleBackground.sizeDelta = Vector2.zero;
+
                 return;
             }
 
