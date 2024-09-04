@@ -18,9 +18,6 @@ namespace A11YTK
         private VideoPlayer _videoPlayer;
 
         [SerializeField]
-        private int _maxCharLength = 20;
-
-        [SerializeField]
         private TextMeshProUGUI _subtitleTextComp;
 
         [SerializeField]
@@ -103,7 +100,7 @@ namespace A11YTK
             var activeSubtitle = Utilities.GetActiveSubtitle(_subtitles, GetElapsedTime());
 
             UpdateSubtitle(activeSubtitle.HasValue && _showSubtitles
-                ? _subtitleTextComp.WrapText(activeSubtitle.Value.text, _maxCharLength)
+                ? activeSubtitle.Value.text
                 : "");
         }
 
@@ -121,11 +118,15 @@ namespace A11YTK
                 return;
             }
 
-            _subtitleTextComp.rectTransform.sizeDelta =
-                _subtitleTextComp.GetPreferredValues(_subtitleTextComp.text);
+            _subtitleTextComp.ForceMeshUpdate();
 
-            _subtitleBackground.sizeDelta = _subtitleTextComp.rectTransform.sizeDelta;
-            _subtitleBackground.anchoredPosition = _subtitleTextComp.rectTransform.anchoredPosition;
+            _subtitleTextComp.verticalAlignment = VerticalAlignmentOptions.Geometry;
+            _subtitleTextComp.enableWordWrapping = true;
+            _subtitleTextComp.overflowMode = TextOverflowModes.Overflow;
+
+            _subtitleBackground.sizeDelta = _subtitleTextComp.textBounds.size;
+            _subtitleBackground.pivot = Vector2.one;
+            _subtitleBackground.anchoredPosition = _subtitleTextComp.textBounds.extents;
         }
 
     }
