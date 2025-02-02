@@ -28,9 +28,9 @@ namespace A11YTK
 
         private bool _showSubtitles = true;
 
-        private bool _audioClipAvailable => _audioSource && _audioSource.clip;
+        private bool _audioClipAvailable => _audioSource != null && _audioSource.clip != null;
 
-        private bool _videoClipAvailable => _videoPlayer && _videoPlayer.clip;
+        private bool _videoClipAvailable => _videoPlayer != null && (_videoPlayer.clip != null || _videoPlayer.url != "" || _videoPlayer.isPrepared);
 
         private readonly List<Subtitle> _subtitles = new();
 
