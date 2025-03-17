@@ -30,7 +30,9 @@ namespace A11YTK
 
         private bool _audioClipAvailable => _audioSource != null && _audioSource.clip != null;
 
-        private bool _videoClipAvailable => _videoPlayer != null && (_videoPlayer.clip != null || _videoPlayer.url != "" || _videoPlayer.isPrepared);
+        private bool _videoClipAvailable => _videoPlayer != null &&
+                                            (_videoPlayer.clip != null || _videoPlayer.url != "" ||
+                                             _videoPlayer.isPrepared);
 
         private readonly List<Subtitle> _subtitles = new();
 
