@@ -130,6 +130,7 @@ namespace A11YTK
             _subtitleTextComp.verticalAlignment = VerticalAlignmentOptions.Geometry;
             _subtitleTextComp.enableWordWrapping = true;
             _subtitleTextComp.overflowMode = TextOverflowModes.Overflow;
+            _subtitleTextComp.raycastTarget = false;
 
             _subtitleBackground.sizeDelta = _subtitleTextComp.textBounds.size;
             _subtitleBackground.pivot = Vector2.one;
