@@ -108,14 +108,14 @@ namespace A11YTK
 
         public void UpdateSubtitle(string subtitleText)
         {
-            if (_subtitleTextComp.text == subtitleText)
+            if (_subtitleTextComp == null || _subtitleTextComp.text == subtitleText)
             {
                 return;
             }
 
             _subtitleTextComp.text = subtitleText.Trim();
 
-            if (!_subtitleBackground)
+            if (_subtitleBackground == null)
             {
                 return;
             }
