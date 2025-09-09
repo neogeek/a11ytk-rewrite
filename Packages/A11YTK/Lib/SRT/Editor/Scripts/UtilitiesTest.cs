@@ -52,6 +52,15 @@ namespace A11YTK.SRT.Tests
         }
 
         [Test]
+        public void ParseSubtitlesFromStringInvalidTest()
+        {
+            var subtitles =
+                Utilities.ParseSubtitlesFromString(Mocks.INVALID_SUBTITLE_CONTENTS);
+
+            Assert.That(subtitles.Count, Is.EqualTo(0));
+        }
+
+        [Test]
         public void GetActiveSubtitleTest()
         {
             var subtitles =
@@ -64,9 +73,8 @@ namespace A11YTK.SRT.Tests
         [Test]
         public void ParseTimeFromContentWithExceptionTest()
         {
-            Assert.Throws<InvalidOperationException>(
-                () =>
-                    Utilities.ParseTimeFromContent(Mocks.TIMESTAMP, out var _, out var _)
+            Assert.Throws<InvalidOperationException>(() =>
+                Utilities.ParseTimeFromContent(Mocks.TIMESTAMP, out var _, out var _)
             );
         }
 

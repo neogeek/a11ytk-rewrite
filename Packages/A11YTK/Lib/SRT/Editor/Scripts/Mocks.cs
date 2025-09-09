@@ -36,6 +36,8 @@ Fine. If you can't wave, just yell out.
 
 ";
 
+        public const string INVALID_SUBTITLE_CONTENTS = @"😐";
+
     }
 
 }

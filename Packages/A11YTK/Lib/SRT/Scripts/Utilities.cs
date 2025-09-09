@@ -49,29 +49,38 @@ namespace A11YTK.SRT
         {
             var subtitles = new List<Subtitle>();
 
-            var sanitizedContent = Regex.Replace(content.Trim(), @"[\n]{3,}", "\n\n");
-
-            var matches = sanitizedContent.Split('\n').ToList().ChunkListWithPatternDelimiter(@"^\s*$");
-
-            foreach (var match in matches)
+            try
             {
-                var subtitle = new Subtitle();
 
-                int.TryParse(match[0], out subtitle.id);
+                var sanitizedContent = Regex.Replace(content.Trim(), @"[\n]{3,}", "\n\n");
 
-                ParseTimeFromContent(match[1], out subtitle.startTime, out subtitle.endTime);
+                var matches = sanitizedContent.Split('\n').ToList().ChunkListWithPatternDelimiter(@"^\s*$");
 
-                var text = new StringBuilder();
-
-                for (var i = 2; i < match.Count; i += 1)
+                foreach (var match in matches)
                 {
-                    text.Append(match[i]);
-                    text.Append(Environment.NewLine);
+                    var subtitle = new Subtitle();
+
+                    int.TryParse(match[0], out subtitle.id);
+
+                    ParseTimeFromContent(match[1], out subtitle.startTime, out subtitle.endTime);
+
+                    var text = new StringBuilder();
+
+                    for (var i = 2; i < match.Count; i += 1)
+                    {
+                        text.Append(match[i]);
+                        text.Append(Environment.NewLine);
+                    }
+
+                    subtitle.text = text.ToString().Trim();
+
+                    subtitles.Add(subtitle);
                 }
 
-                subtitle.text = text.ToString().Trim();
-
-                subtitles.Add(subtitle);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
             }
 
             return subtitles;
